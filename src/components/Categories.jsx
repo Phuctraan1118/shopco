@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 
-export const Categories = () => {
+export default function Categories() {
     return (
       <Grid container spacing={2} justifyContent="center" sx={{ py: 3, bgcolor: "black", color: "white", textAlign: "center" }}>
         <CategoryItem title="Voucher" />

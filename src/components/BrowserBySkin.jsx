@@ -11,7 +11,7 @@ const skinCategories = [
   { id: 4, label: "Formal", image: img4 }
 ];
 
-export function BrowseBySkin() {
+export default function BrowserBySkin() {
   return (
     <Box 
       sx={{ 

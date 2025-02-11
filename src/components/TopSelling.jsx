@@ -10,7 +10,7 @@ const products = [
     { id: 3, name: "Top White Perfect D6", image: img3, price: 180, rating: 4.5 },
     { id: 4, name: "NOREVA SENSIDIANE SOOTHING SERUM", image: img4, price: 130, oldPrice: 160, rating: 3.5, discount: 30 },
   ];
-export const  TopSelling = () => {
+export default function  TopSelling() {
     return (
       <Container sx={{ py: 5, maxWidth: "100%" }}>
         <Typography variant="h2" fontWeight="bold" style={{color:"black", fontFamily:"inherit"}} textAlign="center">TOP SELLING</Typography>
