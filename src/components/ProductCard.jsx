@@ -1,19 +1,60 @@
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
+import { Card, CardMedia, CardContent, Typography, Box, Rating } from '@mui/material';
 
-const ProductCard =({ product }) =>{
-    return (
-      <Card sx={{ height: "100%"  }} style={{borderRadius:20}}>
-        <CardMedia component="img" height="250" style={{borderRadius:20}} image={product.image} alt={product.name} />
-        <CardContent>
-          <Typography variant="h6" fontWeight="bold">{product.name}</Typography>
-          <Typography color="textSecondary">⭐ {product.rating}</Typography>
-          <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>${product.price}</Typography>
-          {product.oldPrice && <Typography sx={{ textDecoration: "line-through", color: "red" }}>${product.oldPrice}</Typography>}
-          {product.discount && <Typography sx={{ bgcolor: "red", color: "white", px: 1, display: "inline-block", borderRadius: 1 }}>-{product.discount}%</Typography>}
-        </CardContent>
-      </Card>
-    );
-  }
-  
-  export default ProductCard;
+export default function ProductCard({ product }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/product/${product.id}`);
+  };
+
+  return (
+    <Card 
+      onClick={handleClick}
+      sx={{ 
+        cursor: 'pointer',
+        '&:hover': { 
+          boxShadow: 3,
+          transform: 'translateY(-4px)',
+          transition: 'all 0.3s ease-in-out'
+        }
+      }}
+    >
+      <CardMedia
+        component="img"
+        height="200"
+        image={product.image}
+        alt={product.name}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h6" component="div" noWrap>
+          {product.name}
+        </Typography>
+        
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+          <Typography variant="h6" color="error" fontWeight="bold">
+            {product.salePrice?.toLocaleString()}đ
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ textDecoration: 'line-through' }}
+          >
+            {product.originalPrice?.toLocaleString()}đ
+          </Typography>
+        </Box>
+
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Rating value={product.rating} precision={0.5} readOnly size="small" />
+          <Typography variant="body2" color="text.secondary">
+            ({product.ratingCount})
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Đã bán {product.soldCount}
+          </Typography>
+        </Box>
+      </CardContent>
+    </Card>
+  );
+}
   

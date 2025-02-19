@@ -15,7 +15,7 @@ const products = [
   ];
 export default function MainScreen() {
   return (
-    <Box sx={{ width: "100vw", overflowX: "hidden" }}>
+    <Box sx={{ width: "99vw", overflowX: "hidden" }}>
       <Header />
       <Banner />
       <Categories />
